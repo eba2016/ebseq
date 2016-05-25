@@ -1,6 +1,14 @@
-<tool id="EBIsoformTwoCondTest" name="Isoform level DE test across two conditions">
+<tool id="EBIsoformTwoCondTest" name="Isoform level DE test across two conditions" version="1.0.1">
   <description>Runs EBSeq to find DE isoforms across two conditions</description>
-  <command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/EBIsoformTwoCondTest.R --args $Isoform_Expression $First_Row_Sample_Names $Conditions $Ig_Vector $Target_FDR $Output $Sorted_Output $Sorted_Outpu_with_target_FDR $Sizes 1>NUL 2>NUL</command>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+
+  <command>R --quiet --slave --file=$__tool_directory__/EBIsoformTwoCondTest.R --args $Isoform_Expression $First_Row_Sample_Names $Conditions $Ig_Vector $Target_FDR $Output $Sorted_Output $Sorted_Outpu_with_target_FDR $Sizes 1>NUL 2>NUL</command>
   <inputs>
 		<param name="Isoform_Expression" type="data" format="tabular" label="Isoform Expression (tab delimited, please use the unnormalized values, e.g. expected counts from RSEM)"/>
 		<param name="First_Row_Sample_Names" type="select" format="text">
@@ -37,5 +45,6 @@ Library size factor for each sample.
 
 </help>
 
+    <expand macro="citation" />
 
 </tool>

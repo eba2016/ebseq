@@ -1,6 +1,14 @@
-<tool id="EBGeneMultiCondTest" name="Gene level DE test across multiple conditions">
+<tool id="EBGeneMultiCondTest" name="Gene level DE test across multiple conditions" version="1.0.1">
   <description>Runs EBSeq to find DE genes across multiple (more than two) conditions</description>
-  <command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/EBGeneMultiCondTest.R --args $Gene_Expression $First_Row_Sample_Names $Conditions $Patterns $PP_of_each_pattern $Pattern_with_highest_PP $Sizes 1>NUL 2>NUL</command>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+
+  <command>R --quiet --slave --file=$__tool_directory__/EBGeneMultiCondTest.R --args $Gene_Expression $First_Row_Sample_Names $Conditions $Patterns $PP_of_each_pattern $Pattern_with_highest_PP $Sizes 1>NUL 2>NUL</command>
   <inputs>
 		<param name="Gene_Expression" type="data" format="tabular" label="Gene Expression (tab delimited, please use the unnormalized values, e.g. expected counts from RSEM)"/>
 		<param name="First_Row_Sample_Names" type="select" format="text">
@@ -30,5 +38,6 @@ The last file provides the library size factor for each sample.
 
 </help>
 
+    <expand macro="citation" />
 
 </tool>

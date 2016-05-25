@@ -1,0 +1,29 @@
+<tool id="Get_All_Patterns" name="Get All Possible Patterns in a Multiple Condition Design" version="1.0.1">
+  <description>Get all possible patterns in a multiple condition design</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+
+	<command>R --quiet --slave --file=$__tool_directory__/GetAllPatterns.R --args $input $output</command>
+<inputs>
+		<param name="input" type="text" size="60" value="C1,C2,C3" label="Enter the condition names 
+			(separated by comma, no space please
+			)" help=""/>
+  </inputs>
+  <outputs>
+		<data format="tabular" name="output" />
+  </outputs>
+
+<help>
+
+
+</help>
+
+
+    <expand macro="citation" />
+
+</tool>

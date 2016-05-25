@@ -1,6 +1,13 @@
-<tool id="Get_Ig" name="Get Ig vector from gene-isoform mapping for isoform level DE analysis">
+<tool id="Get_Ig" name="Get Ig vector from gene-isoform mapping for isoform level DE analysis" version="1.0.1">
 	<description>Get Ig vector from gene-isoform mapping for isoform level DE analysis</description>
-	<command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/GetIg.R --args $input $output</command>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+
+	<command>R --quiet --slave --file=$__tool_directory__/GetIg.R --args $input $output</command>
   <inputs>
 		<param name="input" type="data" size="5" value="" label="" help="Input should be no-header, first column is isoform names, second column is gene names. See below for more information."/>
   </inputs>
@@ -20,5 +27,7 @@ If you are using the 'RSEM to EBSeq' tool for extracting the correct RSEM output
 
   </help>
 
+
+    <expand macro="citation" />
 
 </tool>

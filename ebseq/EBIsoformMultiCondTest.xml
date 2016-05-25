@@ -1,6 +1,15 @@
-<tool id="EBIsoformMultiCondTest" name="Isoform level DE test across multiple conditions">
+<tool id="EBIsoformMultiCondTest" name="Isoform level DE test across multiple conditions" version="1.0.1">
   <description>Runs EBSeq to find DE isoforms across multiple (more than two) conditions</description>
-  <command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/EBIsoformMultiCondTest.R --args $Isoform_Expression $First_Row_Sample_Names $Conditions $Ig_Vector $Patterns_of_Interests $PP_of_each_pattern $Pattern_with_highest_PP $Sizes 1>NUL 2>NUL</command>
+
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+    <expand macro="stdio"/>
+
+  <command>R --quiet --slave --file=$__tool_directory__/EBIsoformMultiCondTest.R --args $Isoform_Expression $First_Row_Sample_Names $Conditions $Ig_Vector $Patterns_of_Interests $PP_of_each_pattern $Pattern_with_highest_PP $Sizes 1>NUL 2>NUL</command>
   <inputs>
 		<param name="Isoform_Expression" type="data" format="tabular" label="Isoform Expression (tab delimited, please use the unnormalized values, e.g. expected counts from RSEM)"/>
 		<param name="First_Row_Sample_Names" type="select" format="text">
@@ -33,5 +42,6 @@ The last file provides the library size factor for each sample.
 
 </help>
 
+    <expand macro="citation" />
 
 </tool>
