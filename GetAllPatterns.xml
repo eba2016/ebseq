@@ -1,0 +1,19 @@
+<tool id="Get_All_Patterns" name="Get All Possible Patterns in a Multiple Condition Design">
+  <description>Get all possible patterns in a multiple condition design</description>
+	<command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/GetAllPatterns.R --args $input $output</command>
+<inputs>
+		<param name="input" type="text" size="60" value="C1,C2,C3" label="Enter the condition names 
+			(separated by comma, no space please
+			)" help=""/>
+  </inputs>
+  <outputs>
+		<data format="tabular" name="output" />
+  </outputs>
+
+<help>
+
+
+</help>
+
+
+</tool>

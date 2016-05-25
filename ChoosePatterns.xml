@@ -1,0 +1,19 @@
+<tool id="Choose_Patterns" name="Choose Patterns of Interest in a Multiple Condition Design">
+  <description>Choose patterns of interest in a multiple condition design</description>
+  <command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/ChoosePatterns.R --args $All_Possible_Patterns $Rows_of_interests $output</command>
+  <inputs>
+		<param name="All_Possible_Patterns" type="data" label="All Possible Patterns" help=""/>
+		<param name="Rows_of_interests"	type="text" size="60" value="1,2,3" label="Enter the rows 
+		 of interests	(separated by comma, no space please)" />
+  </inputs>
+  <outputs>
+		<data format="tabular" name="output" />
+  </outputs>
+
+<help>
+Input could be obtained from Get All Possible Patterns Function
+
+</help>
+
+
+</tool>

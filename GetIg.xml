@@ -1,0 +1,24 @@
+<tool id="Get_Ig" name="Get Ig vector from gene-isoform mapping for isoform level DE analysis">
+	<description>Get Ig vector from gene-isoform mapping for isoform level DE analysis</description>
+	<command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/GetIg.R --args $input $output</command>
+  <inputs>
+		<param name="input" type="data" size="5" value="" label="" help="Input should be no-header, first column is isoform names, second column is gene names. See below for more information."/>
+  </inputs>
+  <outputs>
+		<data format="tabular" name="output" label="Ig vector"/>
+  </outputs>
+
+  <help>
+
+.. class:: warningmark
+
+If you are using the 'RSEM to EBSeq' tool for extracting the correct RSEM output columns to be input directly to EBSeq, your isoforms here must be in alphabetical (A-Z) order, or the Ig vector will not correspond to the correct isoform! If you did NOT use 'RSEM to EBSeq' but did the cuts and joins on RSEM output manually, your genes (rather than isoforms) should be in alphabetical (A-Z) order.
+
+.. class:: informark
+
+**TIP:** To go directly from RSEM output to the input for this tool (does the cuts and sorting in one step), use the Ready_for_Ig_vector Workflow ONLY IF YOU MAKE THE EBSEQ INPUT FILE USING 'RSEM TO EBSE' TOOL. The first column should be isoform names, and the second column should be gene names, such as what one gets from using the 'Text Manipulation: Cut' tool for c1,c2  on RSEM output file isoforms.results. Please make sure there is no header on the input. Header can easily be removed with the 'Text Manipulation: Remove beginning' tool to remove the first line. The aforementioned Workflow does all of the above in one step.
+
+  </help>
+
+
+</tool>

@@ -1,0 +1,39 @@
+<tool id="EBGeneTwoCondTest" name="Gene level DE test across two conditions">
+  <description>Runs EBSeq to find DE genes across two conditions</description>
+  <command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/EBGeneTwoCondTest.R --args $Gene_Expression $First_Row_Sample_Names $Conditions $Target_FDR $Output $Sorted_Output $Sorted_Output_with_target_FDR $Sizes 1>NUL 2>NUL</command>
+  <inputs>
+		<param name="Gene_Expression" type="data" format="tabular" label="Gene Expression (tab delimited, please use the unnormalized values, e.g. expected counts from RSEM)"/>
+		<param name="First_Row_Sample_Names" type="select" format="text">
+			<label>The First Row is Sample Names?</label>
+			<option value="y">Yes</option>
+			<option value="n">No</option>
+			</param>
+		<param name="Conditions" type="text" size="60" value="C1,C2" label="Enter which condition each
+			sample belongs to (separated by comma, no space please)." 
+			help="Sample with condition that comes first alphabetically will be in numerator (C1 relative to C2)."/>
+		<param name="Target_FDR" type="text" format="tabular" value="0.05" label="Target FDR"
+			/>
+  </inputs>
+  <outputs>
+		<data format="tabular" name="Output" label="Output"/>
+		<data format="tabular" name="Sorted_Output" label="Output sorted by PPDE"/>
+		<data format="tabular" name="Sorted_Output_with_target_FDR" label="Sorted output with FDR cutoff"/>
+                <data format="tabular" name="Sizes" label="Normalization factors"/>
+  </outputs>
+
+  <help>
+The input Conditions should have exactly two levels. The length of the Condition vector should be exactly the same as the number of 
+columns in the data file (except the gene names column).
+
+Four output files will be generated. Each of the first 3 files contains Posterior probability of being 
+DE (PPDE), Fold Change (RealFC), Posterior Fold Change (PostFC) and normalized gene expressions.
+The Four files are:
+Genes with the same order as in input file;
+Genes sorted by PPDE; DE Genes under target FDR (PPDE>=TargetFDR) 
+and sorted by PPDE;
+Library size factor for each sample.
+
+</help>
+
+
+</tool>

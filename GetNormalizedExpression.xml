@@ -1,0 +1,25 @@
+<tool id="Get_Normalized_Expressions" name="Get Normalized Expressions">
+  <description>Calculate normalization factors and get the normalized expression matrix</description>
+	<command>R --quiet --slave --file=$GALAXY_ROOT_DIR/tools/EBSeq/GetNormalizedExpression.R --args $Gene_Expression $First_Row_Sample_Names $output $Boxplots $Sizes </command>
+  <inputs>
+		<param name="Gene_Expression" type="data" format="tabular" label="Gene Expression (tab delimited)"/>
+		<param name="First_Row_Sample_Names" type="select" format="text">
+			<label>The First Row is Sample Names?</label>
+			<option value="y">Yes</option>
+			<option value="n">No</option>
+			</param>
+  </inputs>
+  <outputs>
+		<data format="tabular" name="output" label="Normalized expression"/>
+		<data format="pdf" name="Boxplots" label="Boxplots"/>
+		<data format="tabular" name="Sizes" label="Normalization factors"/>
+  </outputs>
+
+  <help>
+The function would provide the normalized expression values (normalized by the library size factors) and estimated library size factors.
+A boxplot for checking will also be generated.
+
+</help>
+
+
+</tool>
